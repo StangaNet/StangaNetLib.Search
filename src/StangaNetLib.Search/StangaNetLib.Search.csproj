@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <AssemblyName>StangaNetLib.Search</AssemblyName>
+    <RootNamespace>StangaNetLib.Search</RootNamespace>
+    <Version>1.0.0</Version>
+    <Description>Unified search abstraction with an in-memory BM25 backend (filters, pagination, sorting, facets). Depends on StangaNetLib.Core.</Description>
+    <PackageTags>search;fulltextsearch;bm25;inmemory;stanganet</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="StangaNetLib.Search.Tests" />
+    <InternalsVisibleTo Include="StangaNetLib.Search.Elasticsearch" />
+    <InternalsVisibleTo Include="StangaNetLib.Search.Meilisearch" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StangaNetLib.Core" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\build\**" Pack="true" PackagePath="build/" />
+  </ItemGroup>
+
+  <Target Name="StampBuildProps" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <_BuildPropsFile>$(MSBuildThisFileDirectory)..\..\build\StangaNetLib.Search.props</_BuildPropsFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <_BPLines Include="&lt;Project&gt;" />
+      <_BPLines Include="  &lt;ItemGroup&gt;" />
+      <_BPLines Include="    &lt;AssemblyAttribute Include=&quot;System.Reflection.AssemblyMetadataAttribute&quot;&gt;" />
+      <_BPLines Include="      &lt;_Parameter1&gt;StangaNetLib.Search&lt;/_Parameter1&gt;" />
+      <_BPLines Include="      &lt;_Parameter2&gt;$(Version)&lt;/_Parameter2&gt;" />
+      <_BPLines Include="    &lt;/AssemblyAttribute&gt;" />
+      <_BPLines Include="  &lt;/ItemGroup&gt;" />
+      <_BPLines Include="&lt;/Project&gt;" />
+    </ItemGroup>
+    <WriteLinesToFile
+      File="$(_BuildPropsFile)"
+      Lines="@(_BPLines)"
+      Overwrite="true"
+      Encoding="UTF-8" />
+    <Message Text="StangaNetLib.Search: stamped build props with version $(Version)" Importance="high" />
+  </Target>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\assets\package-icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\..\CHANGELOG.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
