@@ -6,5 +6,5 @@
 - DI: `AddStangaNetLibSearch<TDocument>` (index name or configuration).
 - Elasticsearch / Meilisearch are separate packages (`InternalsVisibleTo`); do not embed provider clients here.
 - Match existing naming, file-scoped namespaces, and EditorConfig / Roslyn conventions.
-- Tests use xUnit v3 + FluentAssertions; cover both `net8.0` and `net9.0` when changing shared behavior.
+- Tests use xUnit v3 + FluentAssertions; cover `net8.0`, `net9.0`, and `net10.0` when changing shared behavior.
 - Never reintroduce Microsoft.Extensions.* 10.x; pin Core 1.0.0.
