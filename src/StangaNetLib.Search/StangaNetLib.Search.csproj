@@ -3,7 +3,7 @@
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <AssemblyName>StangaNetLib.Search</AssemblyName>
     <RootNamespace>StangaNetLib.Search</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>Unified search abstraction with an in-memory BM25 backend (filters, pagination, sorting, facets). Depends on StangaNetLib.Core.</Description>
     <PackageTags>search;fulltextsearch;bm25;inmemory;stanganet</PackageTags>
   </PropertyGroup>
